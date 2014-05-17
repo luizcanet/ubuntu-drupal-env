@@ -24,6 +24,7 @@ Crie um usuário MySQL para você:
 	mysql> CREATE USER 'seu_usuario'@'localhost' IDENTIFIED BY 'sua_senha';
 	mysql> GRANT ALL PRIVILEGES ON * . * TO 'seu_usuario'@'localhost';
 	mysql> FLUSH PRIVILEGES;
+	mysql> quit
 	# exit
 
 PHP
