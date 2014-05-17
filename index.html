@@ -45,16 +45,21 @@
 <pre><code>$ sudo apt-get install mysql-server
 </code></pre>
 
-<p>Opcional:
-    $ sudo apt-get install mysql-workbench</p>
+<p>Opcional:</p>
 
-<p>Crie um usuário MySQL para você:
-    $ sudo su
-    # mysql -p
-    mysql&gt; CREATE USER 'seu_usuario'@'localhost' IDENTIFIED BY 'sua_senha';
-    mysql&gt; GRANT ALL PRIVILEGES ON * . * TO 'seu_usuario'@'localhost';
-    mysql&gt; FLUSH PRIVILEGES;
-    # exit</p>
+<pre><code>$ sudo apt-get install mysql-workbench
+</code></pre>
+
+<p>Crie um usuário MySQL para você:</p>
+
+<pre><code>$ sudo su
+# mysql -p
+mysql&gt; CREATE USER 'seu_usuario'@'localhost' IDENTIFIED BY 'sua_senha';
+mysql&gt; GRANT ALL PRIVILEGES ON * . * TO 'seu_usuario'@'localhost';
+mysql&gt; FLUSH PRIVILEGES;
+mysql&gt; quit
+# exit
+</code></pre>
 
 <h2>
 <a name="php" class="anchor" href="#php"><span class="octicon octicon-link"></span></a>PHP</h2>
