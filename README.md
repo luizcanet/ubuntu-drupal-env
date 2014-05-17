@@ -14,9 +14,11 @@ MySQL
 	$ sudo apt-get install mysql-server
 
 Opcional:
+
 	$ sudo apt-get install mysql-workbench
 
 Crie um usuário MySQL para você:
+
 	$ sudo su
 	# mysql -p
 	mysql> CREATE USER 'seu_usuario'@'localhost' IDENTIFIED BY 'sua_senha';
