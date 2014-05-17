@@ -36,11 +36,13 @@ Dnsmasq
 	$ sudo vi /etc/dnsmasq.conf
 
 Descomente a linha que contém (provavelmente a última do arquivo):
+
 conf-dir=/etc/dnsmasq.d
 
 	$ sudo vi /etc/dnsmasq.d/localdomain
 
 Adicione a seguinte linha:
+
 address=/localdomain/127.0.0.1
 
 	$ sudo service dnsmasq restart
@@ -53,24 +55,31 @@ Nginx
 	$ sudo vi /etc/php5/fpm/pool.d/seu_usuario.conf
 
 Mude a linha:
+
 	[www]
 
 Para:
+
 	[seu_usuario]
 
 As linhas:
+
 	user = www-data
 	group = www-data
 
 Para:
+
 	user = seu_usuario
 	group = seu_usuario
 
 E a linha:
+
 	listen = /var/run/php5-fpm.socket
 
 Para:
+
 	listen = /var/run/php5-fpm-seu_usuario.socket
+
 
 	$ sudo service php5-fpm stop
 	$ sudo service php5-fpm start
@@ -94,9 +103,11 @@ Drush
 	$ vi ~/.bashrc
 	
 Adicione ao final do arquivo:
+
 	if [ -f ~/.drush_bashrc ] ; then
 	  . ~/.drush_bashrc
 	fi
+
 		
 	if [ "\$(type -t __git_ps1)" ] && [ "\$(type -t __drush_ps1)" ]; then
 	  PS1='\u@\h \w$(__git_ps1 " (%s)")$(__drush_ps1 "[%s]")\$ '
