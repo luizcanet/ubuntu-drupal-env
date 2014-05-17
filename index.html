@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Hambiente de Desenvolvimento Drupal no Ubuntu by luizcanet</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Hambiente de Desenvolvimento Drupal no Ubuntu</h1>
+        <h2>Documentação para auxiliar na configuração do ambiente de desenvolvimento no Ubuntu</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/luizcanet/ubuntu-drupal-env/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/luizcanet/ubuntu-drupal-env/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/luizcanet/ubuntu-drupal-env" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="hambiente-de-desenvolvimento-drupal-no-ubuntu" class="anchor" href="#hambiente-de-desenvolvimento-drupal-no-ubuntu"><span class="octicon octicon-link"></span></a>Hambiente de Desenvolvimento Drupal no Ubuntu</h1>
+
+<p>Documentação para auxiliar na configuração do ambiente de desenvolvimento no Ubuntu</p>
+
+<h2>
+<a name="git" class="anchor" href="#git"><span class="octicon octicon-link"></span></a>Git</h2>
+
+<pre><code>$ sudo apt-get install git
+</code></pre>
+
+<h2>
+<a name="mysql" class="anchor" href="#mysql"><span class="octicon octicon-link"></span></a>MySQL</h2>
+
+<pre><code>$ sudo apt-get install mysql-server
+</code></pre>
+
+<p>Opcional:
+    $ sudo apt-get install mysql-workbench</p>
+
+<p>Crie um usuário MySQL para você:
+    $ sudo su
+    # mysql -p
+    mysql&gt; CREATE USER 'seu_usuario'@'localhost' IDENTIFIED BY 'sua_senha';
+    mysql&gt; GRANT ALL PRIVILEGES ON * . * TO 'seu_usuario'@'localhost';
+    mysql&gt; FLUSH PRIVILEGES;
+    # exit</p>
+
+<h2>
+<a name="php" class="anchor" href="#php"><span class="octicon octicon-link"></span></a>PHP</h2>
+
+<pre><code>$ sudo apt-get install php5-fpm php5-mysql php5-gd php5-curl
+</code></pre>
+
+<h2>
+<a name="dnsmasq" class="anchor" href="#dnsmasq"><span class="octicon octicon-link"></span></a>Dnsmasq</h2>
+
+<pre><code>$ sudo apt-get install dnsmasq
+$ sudo vi /etc/dnsmasq.conf
+</code></pre>
+
+<p>Descomente a linha que contém (provavelmente a última do arquivo):</p>
+
+<p>conf-dir=/etc/dnsmasq.d</p>
+
+<pre><code>$ sudo vi /etc/dnsmasq.d/localdomain
+</code></pre>
+
+<p>Adicione a seguinte linha:</p>
+
+<p>address=/localdomain/127.0.0.1</p>
+
+<pre><code>$ sudo service dnsmasq restart
+</code></pre>
+
+<h2>
+<a name="nginx" class="anchor" href="#nginx"><span class="octicon octicon-link"></span></a>Nginx</h2>
+
+<pre><code>$ sudo apt-get install nginx
+$ sudo cp /etc/php5/fpm/pool.d/www.conf /etc/php5/fpm/pool.d/seu_usuario.conf
+$ sudo vi /etc/php5/fpm/pool.d/seu_usuario.conf
+</code></pre>
+
+<p>Mude a linha:</p>
+
+<pre><code>[www]
+</code></pre>
+
+<p>Para:</p>
+
+<pre><code>[seu_usuario]
+</code></pre>
+
+<p>As linhas:</p>
+
+<pre><code>user = www-data
+group = www-data
+</code></pre>
+
+<p>Para:</p>
+
+<pre><code>user = seu_usuario
+group = seu_usuario
+</code></pre>
+
+<p>E a linha:</p>
+
+<pre><code>listen = /var/run/php5-fpm.socket
+</code></pre>
+
+<p>Para:</p>
+
+<pre><code>listen = /var/run/php5-fpm-seu_usuario.socket
+
+
+$ sudo service php5-fpm stop
+$ sudo service php5-fpm start
+</code></pre>
+
+<p>(Melhor reiniciar o PC)</p>
+
+<h2>
+<a name="composer" class="anchor" href="#composer"><span class="octicon octicon-link"></span></a>Composer</h2>
+
+<pre><code>$ curl -sS https://getcomposer.org/installer | php
+$ mv composer.phar /usr/local/bin/composer
+</code></pre>
+
+<h2>
+<a name="drush" class="anchor" href="#drush"><span class="octicon octicon-link"></span></a>Drush</h2>
+
+<pre><code>$ sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
+$ source $HOME/.bashrc
+$ composer global require drush/drush:dev-master
+$ sudo cp .composer/vendor/drush/drush/drush.complete.sh /etc/bash_completion.d/
+$ cp ~/.composer/vendor/drush/drush/examples/example.bashrc ~/.drush.bashrc
+$ vi ~/.bashrc
+</code></pre>
+
+<p>Adicione ao final do arquivo:</p>
+
+<pre><code>if [ -f ~/.drush_bashrc ] ; then
+  . ~/.drush_bashrc
+fi
+
+
+if [ "\$(type -t __git_ps1)" ] &amp;&amp; [ "\$(type -t __drush_ps1)" ]; then
+  PS1='\u@\h \w$(__git_ps1 " (%s)")$(__drush_ps1 "[%s]")\$ '
+fi
+</code></pre>
+
+<h2>
+<a name="iniciando-um-novo-projeto" class="anchor" href="#iniciando-um-novo-projeto"><span class="octicon octicon-link"></span></a>Iniciando um Novo Projeto</h2>
+
+<pre><code>$mysql -p
+mysql&gt; CREATE DATABASE nome_do_projeto;
+mysql&gt; quit
+
+$ git clone --branch versao_do_drupal http://git.drupal.org/project/drupal.git nome_do_projeto
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
