@@ -167,12 +167,23 @@ fi
 <h2>
 <a name="iniciando-um-novo-projeto" class="anchor" href="#iniciando-um-novo-projeto"><span class="octicon octicon-link"></span></a>Iniciando um Novo Projeto</h2>
 
-<pre><code>$mysql -p
+<pre><code>$ mysql -p
 mysql&gt; CREATE DATABASE nome_do_projeto;
 mysql&gt; quit
-
-$ git clone --branch versao_do_drupal http://git.drupal.org/project/drupal.git nome_do_projeto
 </code></pre>
+
+<p>Opção 1 (Via Composer):</p>
+
+<pre><code>$ composer create-project drupal/drupal nome_do_projeto versao_do_drupal
+</code></pre>
+
+<p>Opção 2 (Via Git):</p>
+
+<pre><code>$ git clone --branch versao_do_drupal http://git.drupal.org/project/drupal.git nome_do_projeto
+</code></pre>
+
+<p>Opção 3 (Via .tar.gz ou Zip):
+Baixar o pacote e descompactar no local desejado, renomeando a pasta pelo nome_do_projeto.</p>
       </section>
     </div>
 
