@@ -132,7 +132,7 @@ Opção 2 (Via Git):
 	$ git clone --branch versao_do_drupal http://git.drupal.org/project/drupal.git nome_do_projeto
 
 Opção 3 (Via .tar.gz ou Zip):
-Baixar o pacote e descompactar no local desejado, renomeando a pasta pelo nome_do_projeto.
+Baixar o pacote e descompactar no local desejado, renomeando a pasta para nome_do_projeto.
 
 
 
