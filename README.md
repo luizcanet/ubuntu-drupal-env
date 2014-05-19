@@ -119,9 +119,20 @@ Adicione ao final do arquivo:
 Iniciando um Novo Projeto
 -------------------------
 
-	$mysql -p
+	$ mysql -p
 	mysql> CREATE DATABASE nome_do_projeto;
 	mysql> quit
 
+Opção 1 (Via Composer):
+
+	$ composer create-project drupal/drupal nome_do_projeto versao_do_drupal
+
+Opção 2 (Via Git):
+
 	$ git clone --branch versao_do_drupal http://git.drupal.org/project/drupal.git nome_do_projeto
+
+Opção 3 (Via .tar.gz ou Zip):
+Baixar o pacote e descompactar no local desejado, renomeando a pasta pelo nome_do_projeto.
+
+
 
