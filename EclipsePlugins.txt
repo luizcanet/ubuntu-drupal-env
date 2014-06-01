@@ -1,0 +1,36 @@
+From Eclipse:
+Eclipse Web Developer Tools
+Eclipse XML Editors and Tools
+JavaScript Development Tools
+Local Terminal (Incubation)
+
+PDT Extension group:
+http://p2-dev.pdt-extensions.org/
+Ansi Console
+Composer
+Doctrine Feature
+Drupal for Eclipse PDT
+Dynamic Languages Toolkit - JavaScript IDE
+JSDT jQuery Integration
+JSHint Eclipse Integration
+Json EditorFeature
+Markdown Editor
+PDT Extensions
+PHP CodeSniffer
+PHP Development Tools (PDT)
+PHPUnit
+ReSt Editor
+Symfony Feature
+Transpiler Feature
+Twig Editor Feature
+UI Themes Feature
+YEdit Feature
+
+Xtext:
+http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/
+
+Eclipse plugin for LESS:
+http://www.normalesup.org/~simonet/soft/ow/update/
+
+Indent Guide plug-in for Eclipse:
+http://atlanto.github.com/IndentGuide/update
