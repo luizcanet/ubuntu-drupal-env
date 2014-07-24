@@ -1,4 +1,4 @@
-Hambiente de Desenvolvimento Drupal no Ubuntu
+Ambiente de Desenvolvimento Drupal no Ubuntu
 =============================================
 
 Documentação para auxiliar na configuração do ambiente de desenvolvimento no Ubuntu
